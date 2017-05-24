@@ -1,0 +1,9 @@
+name, id, lat, lon
+ws Fitzcarraldo Amsterdam, 				Station ID: 1000000779,	52.340918,	4.849089
+Weerstation IJburg, 					Station ID: 1000000112, 52.3552826,	4.9923087
+Daltonschool Neptunus, 					Station ID: 932806001, 	52.35948,	4.990991
+AMS-IJ, 								Station ID: 926656002, 	52.3786353,	4.9317459
+Amsterdam-Westerpark, 					Station ID: 942486001, 	52.389868,	4.878238
+Weather station Amsterdam Westerpark, 	Station ID: 924276001, 	52.381929,	4.86838
+A'veen, 								Station ID: 933736001, 	52.27809,	4.861594
+Amsterdam/Schiphol AP, 					Station ID: 916696001, 	52.317,		4.79
