@@ -25,7 +25,7 @@ library(lattice)
 
 
 ## Set working directory
-dir <- "C:/Users/Nadir/hubiC/_Studie/New folder"
+dir <- "C:/Users/Nadir/hubiC/_Studie/MscThesis/_r_thesis"
 setwd(dir)
 
 #### Import files and data ####
