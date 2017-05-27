@@ -1,0 +1,19 @@
+name,id,lat,lon							
+ws Fitzcarraldo,Amsterdam,1000000779,52.340918,4.849089
+Weerstation IJburg,1000000112,52.3552826,4.9923087
+Daltonschool Neptunus,932806001,52.35948,4.990991
+AMS-IJ,926656002,52.3786353638703,4.93174590005208
+Amsterdam-Westerpark,942486001,52.389868,4.878238
+Weather station Amsterdam Westerpark,924276001,52.381929,4.86838
+A'veen,933736001,52.27809,4.861594
+Amsterdam/Schiphol AP,916696001,52.317,4.79
+Bernisse,A,51.82128,4.2511
+Bolnes,B,51.89819,4.55184
+Capelle a/d IJssel,C,51.92746,4.58506
+Delfshaven,D,51.90506,4.44618
+Lansingerland,E,52.01035,4.5288
+Ommoord,F,51.95842,4.54745
+Ridderkerk,G,51.87786,4.58512
+Rijnhaven,H,51.90580,4.49338
+Oost,I,51.92530,4.54767
+Spaanse polder,J,51.93245,4.41623
