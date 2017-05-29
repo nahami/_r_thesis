@@ -102,6 +102,7 @@ for (i in 1:length(unique(data_in$ID)))
     # rm(tempInput, distances, dfNameCore, dfNameJoins, distanceColName, genericLocationName)
     
     ## Print current state
+    print(nrow(featureInput))
     print(sprintf("Prepared data for %i location(s)", i))
     
   }
@@ -122,7 +123,9 @@ colnames(featureInput) <- a
 
 ## Random row IDs
 set.seed(123)
-randomizedRowIDs <- sample(1:length(featureInput[,1]), length(featureInput[,1]), replace=FALSE)
+# randomizedRowIDs <- sample(1:length(featureInput[,1]), length(featureInput[,1]), replace=FALSE)
+randomizedRowIDs <- as.integer(row.names(featureInput))
+
 
 ## Create train and test row IDs
 cutOff <- floor(0.2*length(featureInput[,1]))
@@ -284,7 +287,7 @@ g10 <- arrangeGrob(g1,g2,g3,g4,g5,g6,g7,g8,g9, ncol = 3)
 
 plot(g10)
 
-ggsave(plot = g10, filename = 'plot_first_res', dpi = 600,device = 'png' )
+ggsave(plot = g10, filename = 'plot_first_res2', dpi = 600,device = 'png' )
 
 ########################################################################
 ########################### NOTES ON RESULTS ###########################

@@ -1,0 +1,11 @@
+As both Marc and Marieke already pointed out to me the previous week, 
+I should take care when splitting the data for training/testing. 
+I think this is one of the main reasons why the prediction is not so good.
+
+Main points for next week are:
+- Make an overview (map) of stations in citys, rdam adam & eindhoven- 
+- Download data of Rdam and Eindhoven
+- Go through the preprocessing steps described by Max Kuhn in the caret package (for currently used data)
+- Choose a specific day, ideal for the observation of UHI
+- Retrain using different splitting strategy
+- Add variables to dataset (LC, sun elevation, nearest KNMI AWS)
