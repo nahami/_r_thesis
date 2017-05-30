@@ -9,10 +9,10 @@ rm(list=ls())
 library(sp)        # spatial tools lat lon data
 library(data.table)# dataframe extension
 library(geosphere) # distance calcultion based on lat lon (haversine,great circle method)
-library(xgboost)   # ensemble method: extreme gradient boosted trees
-library(lattice)   # dependable of caret
-library(ggplot2)   # dependable caret
-library(caret)     # caret predictive modelling tools
+# library(xgboost)   # ensemble method: extreme gradient boosted trees
+# library(lattice)   # dependable of caret
+# library(ggplot2)   # dependable caret
+# library(caret)     # caret predictive modelling tools
 library(Matrix)    # matrices
 
 ## Set working directory
@@ -22,13 +22,16 @@ setwd(dir)
 
 #### Import files and data ####
 
+
+
+
+
+
 ## Location data
-locationCoordinates <- as.data.frame(fread(input = "WS_wow.txt", sep = ",", header = TRUE, 
-                             stringsAsFactors = FALSE, na.strings = "-"))
-
-# only keep numeral characters in id field
-locationCoordinates$id <- as.numeric(gsub("\\D", "", locationCoordinates$id))
-
+locationCoordinates <- fread(input = "data/Adam/WS_wow.txt", 
+                             sep = ",", header = TRUE,
+                             stringsAsFactors = FALSE,
+                             na.strings = "-")
 
 ## Radiation data import
 radiation_data <- as.data.frame(readRDS("KEDexpSICCS(1).rda"))
