@@ -64,16 +64,22 @@ for (e in seq_along(fltudrdam)){
                        'Albedo'
   )
   
-  assign(list.files('data/Rdam/TUDelft', pattern = '.csv')[e], data)
+  assign(paste('tud_',data[1,2],sep = ''), data)
   print(sprintf('imported %i files',e))
+  rm(data,l2keep,nL)
 }
-
-rm(data, datardam_tud)
 
 
 for (e in seq_along(datardam_wow)) {
   data <- as.data.frame(datardam_wow[e])
+  data <- cbind(id = as.numeric(gsub("\\D", "", colnames(data)[2])),data)
   st_id = as.numeric(gsub("\\D", "", colnames(data)[3]))
-  assign(paste('wow',st_id,sep = ''),data)
+  assign(paste('wow_',st_id,sep = ''),data)
+  rm(data,st_id)
   # print(e)
 }
+
+rm(e,dir,fltudrdam,flwowrdam,datardam_wow)
+
+
+# save(aaa,file = 'data_tables.RData')
