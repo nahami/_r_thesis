@@ -3,7 +3,7 @@
 # May 2017, by Nadir Ahami
 # 
 
-# Set up environment --------------------------
+#### Set up environment ####
 rm(list=ls())
 
 # Set working directory
@@ -15,8 +15,7 @@ setwd(dir)
 # packages
 library(R.utils)
 
-
-# Import data ---------------------------------
+#### Import data ####
 # load wow and TUD data coordinates and IDs
 idlatlon <- read.csv('data/Rdam/rdam_all', header = FALSE)
 colnames(idlatlon) <- c('Name', 'id', 'lat', 'lon', 'owner')
@@ -26,8 +25,8 @@ flwowrdam <- paste(dir,'/data/Rdam/WOW/',list.files('data/Rdam/WOW'), sep = '')
 fltudrdam <- paste(dir,'/data/Rdam/TUDelft/',list.files('data/Rdam/TUDelft',pattern = '.csv'), sep = '')
 
 datardam_wow <- lapply(X = flwowrdam,read.csv,sep = ";", header = TRUE, stringsAsFactors = FALSE, na.strings = "-")
-# datardam_tud <- lapply(X = fltudrdam,read.csv)
 
+#### Formatting and subselection data ####
 #TUD Data
 for (e in seq_along(fltudrdam)){
   l2keep <- 16500
@@ -87,18 +86,20 @@ for (e in seq_along(datardam_wow)) {
   # print(e)
 }
 
+# Get list of all dfs and combine into 1 df
+dfs = sapply(.GlobalEnv, is.data.frame)
+alld <- do.call(rbind, mget(names(dfs)[dfs]))
+
 #KNMI AWS 
 KNMI_AWS <- read.csv(file = 'data/Rdam/KNMI_AWS/export_915096001.csv', sep = ";", header = TRUE, stringsAsFactors = FALSE, na.strings = "-") 
 KNMI_AWS <- cbind(id = as.numeric(gsub("\\D", "", colnames(KNMI_AWS)[2])),KNMI_AWS)
-KNMI_AWS <- as.data.frame(cbind(id = KNMI_AWS[,1], datetime = KNMI_AWS[,2], temp = KNMI_AWS[,3]))
+KNMI_AWS <- as.data.frame(cbind(id = KNMI_AWS[,1], datetime = KNMI_AWS[,2], temp_aws = KNMI_AWS[,3], ws = KNMI_AWS[,4], wd = KNMI_AWS[,5], pr = KNMI_AWS[,7]))
+KNMI_AWS$datetime <- strptime(KNMI_AWS$datetime, format = "%Y-%m-%dT%H:%M:%S")
 
 rm(e,dir,fltudrdam,flwowrdam,datardam_wow)
 
 
-# Get list of all dfs and combine into 1 df
-dfs = sapply(.GlobalEnv, is.data.frame) 
-alld <- do.call(rbind, mget(names(dfs)[dfs]))
 
 # save df 
-save(alld,file = 'obs.RData')
+save(alld,KNMI_AWS,file = 'obs.RData')
 
