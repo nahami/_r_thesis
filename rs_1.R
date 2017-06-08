@@ -2,7 +2,6 @@
 # Thesis: Statistical modeling of the Urban Heat Island
 # May 2017, by Nadir Ahami
 # 
-
 #### Set up environment ####
 rm(list=ls())
 
@@ -14,6 +13,7 @@ setwd(dir)
 
 # packages
 library(R.utils)
+library(data.table)
 
 #### Import data ####
 # load wow and TUD data coordinates and IDs
@@ -28,10 +28,11 @@ datardam_wow <- lapply(X = flwowrdam,read.csv,sep = ";", header = TRUE, stringsA
 
 #### Formatting and subselection data ####
 #TUD Data
+e =1
 for (e in seq_along(fltudrdam)){
   l2keep <- 16500
   nL <- countLines(fltudrdam[e])
-  data <- read.csv(fltudrdam[e], skip=nL-l2keep,stringsAsFactors = FALSE, na.strings = "NaN")
+  data <- fread(fltudrdam[e], skip=nL-l2keep,stringsAsFactors = FALSE, na.strings = "NaN")
   colnames(data) <- c( 'DateTime',
                        'Name',
                        'Battery_{Min}',
@@ -67,8 +68,20 @@ for (e in seq_along(fltudrdam)){
                        'Albedo'
   )
   
-  data <- as.data.frame(cbind(id = data$'Name', datetime = data$'DateTime', temp = as.double(data$'Tair_{Avg}')))
+  data <- as.data.frame(data[,c(1,2,7)])
+  colnames(data) <- c('datetime','id','temp')
   data$datetime <- strptime(data$datetime, format = "%Y-%m-%d %H:%M:%S")
+  
+  data2 <- aggregate(list(temp = data$temp), by=list(datetime=cut(data$datetime,"hour")),mean)
+  datetime <- as.data.frame(strptime(data2[,1], format = "%Y-%m-%d %H:%M:%S"))
+  data2$id <- data[2,2]
+  data2$datetime <- strptime(data2[,1], format = "%Y-%m-%d %H:%M:%S")
+
+  
+  
+  
+  # data <- cbind(datetime = as.date(datetime[,1]), id = data$id[1], temp = data2[,2]) 
+  
   assign(paste('tud_',data[1,1],sep = ''), data)
   print(sprintf('imported %i files',e))
   rm(data,l2keep,nL)

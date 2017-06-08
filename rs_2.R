@@ -185,21 +185,21 @@ g <- ggplot(data = data.frame(boos = predictions_bst,
                               dec_lc_b = predictions_dectr_lc_b,
                               dec_ws = predictions_dectr_ws))
 g1 <- g + geom_point(aes(x = boos, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("gradient boost reg",paste0("rmse = ", round(RMSE_bst,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
-g2 <- g + geom_point(aes(x = lin, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin model",paste0("rmse = ", round(rmse_linr,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
+g2 <- g + geom_point(aes(x = lin, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin model",paste0("rmse = ", round(rmse_linr,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)  
 g3 <- g + geom_point(aes(x = dec, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec tree",paste0("rmse = ", round(rmse_dectr,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
-g4 <- g + geom_point(aes(x = lin_svf, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - svf",paste0("rmse = ", round(rmse_linr_svf,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
-g5 <- g + geom_point(aes(x = lin_lc_b, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - lc",paste0("rmse = ", round(rmse_linr_lc_b,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
-g6 <- g + geom_point(aes(x = lin_ws, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - ws",paste0("rmse = ", round(rmse_linr_ws,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
+g4 <- g + geom_point(aes(x = lin_svf, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - svf",paste0("rmse = ", round(rmse_linr_svf,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
+g5 <- g + geom_point(aes(x = lin_lc_b, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - lc",paste0("rmse = ", round(rmse_linr_lc_b,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
+g6 <- g + geom_point(aes(x = lin_ws, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("lin - ws",paste0("rmse = ", round(rmse_linr_ws,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
 g7 <- g + geom_point(aes(x = dec_svf, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec - svf",paste0("rmse = ", round(rmse_dectr_svf,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
-g8 <- g + geom_point(aes(x = dec_lc_b, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec - lc",paste0("rmse = ", round(rmse_dectr_lc_b,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
-g9 <- g + geom_point(aes(x = dec_ws, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec - ws",paste0("rmse = ", round(rmse_dectr_ws,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1)
+g8 <- g + geom_point(aes(x = dec_lc_b, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec - lc",paste0("rmse = ", round(rmse_dectr_lc_b,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
+g9 <- g + geom_point(aes(x = dec_ws, y = y)) + labs(x='fitted', y = 'actual') + ggtitle("dec - ws",paste0("rmse = ", round(rmse_dectr_ws,2))) + geom_abline(slope = 1, intercept = 0, col = 2, lwd =1) 
 
 g10 <- arrangeGrob(g1,g2,g3,g4,g5,g6,g7,g8,g9, ncol = 3)
 
 
-plot(g10)
+plot(g10) 
 
-ggsave(plot = g10, filename = 'plot_first_res2', dpi = 600,device = 'png' )
+ggsave(plot = g10, filename = 'plot_first_res3', dpi = 600,device = 'png' )
 
 
 
