@@ -118,7 +118,11 @@ KNMI_AWS_1$id <- as.numeric(gsub("\\D", "", colnames(KNMI_AWS_1)[2]))
 KNMI_1 <- as.data.frame(strptime(KNMI_AWS_1$datum, format = "%Y-%m-%dT%H:%M:%S"))
 KNMI_1 <- cbind(KNMI_1, KNMI_AWS_1[,c(7,2,3,4,6)])
 colnames(KNMI_1) <- c('datetime','id','temp_aws','ws','wd','pr')
+KNMI_1 <- aggregate(list(temp_aws = KNMI_1$temp_aws, ws = KNMI_1$ws, wd = KNMI_1$wd, pr = KNMI_1$pr), by=list(datetime=cut(KNMI_1$datetime,"hour")),mean)
 KNMI_1$datetime <- as.character(KNMI_1$datetime) 
+
+
+
 
 #KNMI AWS 2
 KNMI_AWS_2 <- fread(file = 'data/Rdam/KNMI_AWS_2/export_920316001.csv', sep = ";", header = TRUE, stringsAsFactors = FALSE, na.strings = "-") 
@@ -126,6 +130,7 @@ KNMI_AWS_2$id <- as.numeric(gsub("\\D", "", colnames(KNMI_AWS_2)[2]))
 KNMI_2 <- as.data.frame(strptime(KNMI_AWS_2$datum, format = "%Y-%m-%dT%H:%M:%S"))
 KNMI_2 <- cbind(KNMI_2, KNMI_AWS_2[,c(7,2,3,4,6)])
 colnames(KNMI_2) <- c('datetime','id','temp_aws','ws','wd','pr')
+KNMI_2 <- aggregate(list(temp_aws = KNMI_2$temp_aws, ws = KNMI_2$ws, wd = KNMI_2$wd, pr = KNMI_2$pr), by=list(datetime=cut(KNMI_2$datetime,"hour")),mean)
 KNMI_2$datetime <- as.character(KNMI_2$datetime) 
 
 rm(e,dir,fltudrdam,flwowrdam,datardam_wow, KNMI_AWS_1, KNMI_AWS_2)
