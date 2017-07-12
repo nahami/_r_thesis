@@ -200,7 +200,7 @@ rmse_dectr_lc_b
 rmse_dectr_ws <- sqrt(mean((predictions_dectr_ws - matrixTestY)^2))
 rmse_dectr_ws
 
-
+#khvbsdkcjkdbasnc
 ####### plotting
 ds = 0.05
 g <- ggplot(data = data.frame(boos = predictions_bst, 
